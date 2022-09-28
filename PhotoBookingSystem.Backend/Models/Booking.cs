@@ -9,9 +9,9 @@ namespace photo_booking_system.Models
 
         #region Variables
 
-        private const double BasePrice = 30.00;
-        private const int PhotoRate = 2;
-        private const int VideoRate = 50;
+        //private const double BasePrice = 30.00;
+        //private const int PhotoRate = 2;
+        //private const int VideoRate = 50;
 
         #endregion
 
@@ -43,7 +43,7 @@ namespace photo_booking_system.Models
         [Required]
         public DateTime EndDateTime {get; set;}
 
-        public int? Photos {get; set;}
+        public int? Photo {get; set;}
 
         public int? Video {get; set;}
 
@@ -57,23 +57,23 @@ namespace photo_booking_system.Models
 
         #region Methods
         //Put this stuff elsewhere...
-        public void CalculatePrice() 
-        {
+        //public void CalculatePrice() 
+        //{
 
-            double? temp = BasePrice;
+        //    double? temp = BasePrice;
 
-            if(Photos!= null)
-            {
-                temp += Photos * (double) PhotoRate;
-            }
+        //    if(Photos!= null)
+        //    {
+        //        temp += Photos * (double) PhotoRate;
+        //    }
 
-            if(Video != null) 
-            {
-                temp += Video * (double) VideoRate;
-            }
+        //    if(Video != null) 
+        //    {
+        //        temp += Video * (double) VideoRate;
+        //    }
 
-            Price = temp;
-        }
+        //    Price = temp;
+        //}
 
         #endregion
     }

@@ -4,7 +4,7 @@ GO
 
 CREATE TABLE dbo.Bookings
 (
- BookingId int IDENTITY(1,1) NOT NULL PRIMARY KEY, -- primary key column
+ BookingId int IDENTITY(1,1) NOT NULL PRIMARY KEY,
  ClientName nvarchar(50) NOT NULL,
  ClientEmail nvarchar(50) NOT NULL,
  ClientPhone nvarchar(20) NOT NULL,

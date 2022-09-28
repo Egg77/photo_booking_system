@@ -13,4 +13,12 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Dto\" />
+    <None Remove="DbScripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dto\" />
+    <Folder Include="DbScripts\" />
+  </ItemGroup>
 </Project>
