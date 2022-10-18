@@ -11,14 +11,18 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 
+    <PackageReference Include="Autofac" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Dto\" />
     <None Remove="DbScripts\" />
+    <None Remove="Autofac" />
+    <None Remove="ActionFilters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dto\" />
     <Folder Include="DbScripts\" />
+    <Folder Include="ActionFilters\" />
   </ItemGroup>
 </Project>

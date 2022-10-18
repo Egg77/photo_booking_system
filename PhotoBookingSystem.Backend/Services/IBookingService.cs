@@ -6,10 +6,10 @@ namespace photo_booking_system.Services
 {
     public interface IBookingService
     {
-        public Task<List<T>> GetBookingListAsync<T>();
         public Task<Booking> GetBookingAsync<T>(int BookingID);
-        public Task CreateBooking(BookingCreationDto bookingCreationDto);
-        public Task UpdateBooking(int BookingId, BookingUpdateDto bookingUpdateDto);
-        public Task DeleteBooking(int BookingId);
+        public Task<List<Booking>> GetBookingListAsync<T>();
+        public Task CreateBookingAsync(BookingCreationDto bookingCreationDto);
+        public Task UpdateBookingAsync(int BookingId, BookingUpdateDto bookingUpdateDto);
+        public Task DeleteBookingAsync(int BookingId);
     }
 }

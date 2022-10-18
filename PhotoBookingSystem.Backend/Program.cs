@@ -1,14 +1,20 @@
 using photo_booking_system.Services;
 using photo_booking_system.Providers;
+using photo_booking_system.ActionFilters;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//Check out validation filters - throw that in here
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ValidationFilterAttribute>();
+builder.Services.Configure<ApiBehaviorOptions>(options
+    => options.SuppressModelStateInvalidFilter = true);
 builder.Services.AddSingleton<IBookingService, BookingService>();
 builder.Services.AddSingleton<ISQLConnectionProvider, SQLConnectionProvider>();
 

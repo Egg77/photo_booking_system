@@ -4,6 +4,7 @@ using photo_booking_system.Models;
 using photo_booking_system.Services;
 using photo_booking_system.Providers;
 using photo_booking_system.Dto;
+using photo_booking_system.ActionFilters;
 
 namespace photo_booking_system.Controllers 
 {
@@ -22,102 +23,76 @@ namespace photo_booking_system.Controllers
             _SQLConnectionProvider = sQLConnectionProvider;
         }
 
+
         [HttpGet]
+        [Route("BookingList")]
         public async Task <IActionResult> GetBookingList()
         {
-            try
+            var result = await _BookingService.GetBookingListAsync<Booking>();
+
+            if (result == null)
             {
-                var result = await _BookingService.GetBookingListAsync<Booking>();
-                return new OkObjectResult(result);
+                return StatusCode(500);
             }
 
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + ex.StackTrace);
-            }
-            return null;
+            return new OkObjectResult(result);
         }
 
         [HttpGet]
         [Route("{BookingId}")]
         public async Task <IActionResult> GetBooking(int BookingId)
         {
-            try
-            {
-                if (BookingId <= 0) return BadRequest("Invalid Booking ID");
+            if (BookingId <= 0) return BadRequest("Invalid Booking ID");
 
-                var result = await _BookingService.GetBookingAsync<Booking>(BookingId);
+            var result = await _BookingService.GetBookingAsync<Booking>(BookingId);
 
-                if (result == null) return NotFound();
+            if (result == null) return NotFound();
 
-                return new OkObjectResult(result);
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + ex.StackTrace);
-            }    
-            return null;
+            return new OkObjectResult(result);
         }
 
         [HttpPut]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [Route("Create")]
         public async Task<IActionResult> CreateBooking(BookingCreationDto Booking)
         {
-            try
-            {
-                await _BookingService.CreateBooking(Booking);
-                return new OkResult();
-            }
+            //TODO: Have CreateBooking return something so we can return an error response
 
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + ex.StackTrace);
-            }
-            return null;
+            await _BookingService.CreateBookingAsync(Booking);
+
+            return new OkResult();
+
         }
 
         [HttpPatch]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [Route("Update/{BookingId}")]
         public async Task<IActionResult> UpdateBooking(int BookingId, BookingUpdateDto Booking)
         {
-            try
-            {
-                if (BookingId <= 0) return BadRequest("Invalid Booking ID");
+            //TODO: Have UpdateBooking return something so we can return an error response
 
-                var dbBooking = GetBooking(BookingId);
-                if (dbBooking == null) return NotFound();
+            if (BookingId <= 0) return BadRequest("Invalid Booking ID");
 
-                await _BookingService.UpdateBooking(BookingId, Booking);
-                return new OkResult();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + ex.StackTrace);
-            }
-            return null;
-            
+            var dbBooking = GetBooking(BookingId);
+            if (dbBooking == null) return NotFound();
+
+            await _BookingService.UpdateBookingAsync(BookingId, Booking);
+            return new OkResult();            
         }
 
         [HttpDelete]
         [Route("Delete/{BookingId}")]
         public async Task<IActionResult> DeleteBooking(int BookingId) 
         {
-            try
-            {
-                if (BookingId <= 0) return BadRequest("Invalid Booking ID");
+            if (BookingId <= 0) return BadRequest("Invalid Booking ID");
 
-                var dbBooking = GetBooking(BookingId);
-                if (dbBooking == null) return NotFound();
+            var result = await _BookingService.GetBookingAsync<Booking>(BookingId);
+            if (result == null) return NotFound();
 
-                await _BookingService.DeleteBooking(BookingId);
-                return new OkResult();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + ex.StackTrace);
-            }
-            return null;
+            await _BookingService.DeleteBookingAsync(BookingId);
+            return new OkResult();
         }
     }
 }
+
+//TODO: Add some unit tests on the controller

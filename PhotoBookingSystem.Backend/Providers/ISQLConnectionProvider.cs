@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Data;
+using photo_booking_system.Dto;
+using photo_booking_system.Models;
 
 namespace photo_booking_system.Providers
 {
     public interface ISQLConnectionProvider
     {
-        Task<IDbConnection> GetConnectionAsync();
+        public Task<IDbConnection> GetConnectionAsync();
+
+        public Task<Booking> GetBooking<T>(int BookingId);
+
+        public Task<List<T>> GetBookingList<T>();
+
+        public Task CreateBooking(BookingCreationDto Booking);
+
+        public Task UpdateBooking(int BookingId, BookingUpdateDto Booking);
+
+        public Task DeleteBooking(int BookingId);
     }
 }
-
