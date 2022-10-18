@@ -15,8 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ValidationFilterAttribute>();
 builder.Services.Configure<ApiBehaviorOptions>(options
     => options.SuppressModelStateInvalidFilter = true);
-builder.Services.AddSingleton<IBookingService, BookingService>();
-builder.Services.AddSingleton<ISQLConnectionProvider, SQLConnectionProvider>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<ISQLConnectionProvider, SQLConnectionProvider>();
 
 var app = builder.Build();
 
