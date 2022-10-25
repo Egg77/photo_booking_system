@@ -13,10 +13,10 @@ namespace photo_booking_system.Providers
 
         public Task<List<T>> GetBookingList<T>();
 
-        public Task CreateBooking(BookingCreationDto Booking);
+        public Task<bool?> CreateBooking(BookingCreationDto Booking);
 
-        public Task UpdateBooking(int BookingId, BookingUpdateDto Booking);
+        public Task<bool?> UpdateBooking(int BookingId, BookingUpdateDto Booking);
 
-        public Task DeleteBooking(int BookingId);
+        public Task<bool?> DeleteBooking(int BookingId);
     }
 }

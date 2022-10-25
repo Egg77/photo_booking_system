@@ -12,8 +12,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 
     <PackageReference Include="Autofac" Version="6.4.0" />
-    <PackageReference Include="Moq" Version="4.18.2" />
-    <PackageReference Include="xunit" Version="2.4.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +19,6 @@
     <None Remove="DbScripts\" />
     <None Remove="Autofac" />
     <None Remove="ActionFilters\" />
-    <None Remove="UnitTests\" />
     <None Remove="Moq" />
     <None Remove="xunit" />
   </ItemGroup>
@@ -29,6 +26,5 @@
     <Folder Include="Dto\" />
     <Folder Include="DbScripts\" />
     <Folder Include="ActionFilters\" />
-    <Folder Include="UnitTests\" />
   </ItemGroup>
 </Project>

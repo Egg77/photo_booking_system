@@ -8,19 +8,16 @@ using photo_booking_system.ActionFilters;
 
 namespace photo_booking_system.Controllers 
 {
-
     [ApiController]
     [Route ("[controller]")]
     public class BookingController : ControllerBase 
     {
-
         private IBookingService _BookingService;
-        private ISQLConnectionProvider _SQLConnectionProvider;
+
 
         public BookingController(IBookingService bookingService, ISQLConnectionProvider sQLConnectionProvider)
         {
             _BookingService = bookingService;
-            _SQLConnectionProvider = sQLConnectionProvider;
         }
 
 
@@ -31,24 +28,32 @@ namespace photo_booking_system.Controllers
             var result = await _BookingService.GetBookingListAsync<Booking>();
 
             if (result == null)
-            {
                 return StatusCode(500);
-            }
 
             return new OkObjectResult(result);
+
         }
 
         [HttpGet]
         [Route("{BookingId}")]
-        public async Task <IActionResult> GetBooking(int BookingId)
+        public async Task<IActionResult> GetBooking(int BookingId)
         {
-            if (BookingId <= 0) return BadRequest("Invalid Booking ID");
+            if (BookingId <= 0)
+                return BadRequest("Invalid Booking ID");
 
-            var result = await _BookingService.GetBookingAsync<Booking>(BookingId);
+            try
+            {
+                var result = await _BookingService.GetBookingAsync<Booking>(BookingId);
 
-            if (result == null) return NotFound();
+                if (result == null)
+                    return NotFound();
 
-            return new OkObjectResult(result);
+                return new OkObjectResult(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPut]
@@ -56,11 +61,16 @@ namespace photo_booking_system.Controllers
         [Route("Create")]
         public async Task<IActionResult> CreateBooking(BookingCreationDto Booking)
         {
-            //TODO: Have CreateBooking return something so we can return an error response
+            var result = await _BookingService.CreateBookingAsync(Booking);
 
-            await _BookingService.CreateBookingAsync(Booking);
+            if (result == null)
+                return StatusCode(500);
 
-            return new OkResult();
+            else if (result == false)
+                return BadRequest();
+
+            else
+                return new OkResult();
 
         }
 
@@ -69,15 +79,21 @@ namespace photo_booking_system.Controllers
         [Route("Update/{BookingId}")]
         public async Task<IActionResult> UpdateBooking(int BookingId, BookingUpdateDto Booking)
         {
-            //TODO: Have UpdateBooking return something so we can return an error response
-
             if (BookingId <= 0) return BadRequest("Invalid Booking ID");
 
             var dbBooking = GetBooking(BookingId);
             if (dbBooking == null) return NotFound();
 
-            await _BookingService.UpdateBookingAsync(BookingId, Booking);
-            return new OkResult();            
+            var result = await _BookingService.UpdateBookingAsync(BookingId, Booking);
+
+            if (result == null)
+                return StatusCode(500);
+
+            else if (result == false)
+                return BadRequest();
+
+            else
+                return new OkResult();            
         }
 
         [HttpDelete]
@@ -86,13 +102,19 @@ namespace photo_booking_system.Controllers
         {
             if (BookingId <= 0) return BadRequest("Invalid Booking ID");
 
-            var result = await _BookingService.GetBookingAsync<Booking>(BookingId);
-            if (result == null) return NotFound();
+            var dbBooking = await _BookingService.GetBookingAsync<Booking>(BookingId);
+            if (dbBooking == null) return NotFound();
 
-            await _BookingService.DeleteBookingAsync(BookingId);
-            return new OkResult();
+            var result = await _BookingService.DeleteBookingAsync(BookingId);
+
+            if (result == null)
+                return StatusCode(500);
+
+            else if (result == false)
+                return BadRequest();
+
+            else
+                return new OkResult();
         }
     }
 }
-
-//TODO: Add some unit tests on the controller

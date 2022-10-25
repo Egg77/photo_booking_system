@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1703.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBookingSystem.Backend", "PhotoBookingSystem.Backend.csproj", "{23E6E86B-7ECD-44EB-AD46-2658BFBD128B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBookingSystem.Backend.Tests", "..\PhotoBookingSystem.Backend.Tests\PhotoBookingSystem.Backend.Tests.csproj", "{0209C07F-7BBB-4B43-8BBF-D6311340FE6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{23E6E86B-7ECD-44EB-AD46-2658BFBD128B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E6E86B-7ECD-44EB-AD46-2658BFBD128B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E6E86B-7ECD-44EB-AD46-2658BFBD128B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0209C07F-7BBB-4B43-8BBF-D6311340FE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0209C07F-7BBB-4B43-8BBF-D6311340FE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0209C07F-7BBB-4B43-8BBF-D6311340FE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0209C07F-7BBB-4B43-8BBF-D6311340FE6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

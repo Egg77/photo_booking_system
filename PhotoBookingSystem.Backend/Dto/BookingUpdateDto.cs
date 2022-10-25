@@ -11,7 +11,7 @@ namespace photo_booking_system.Dto
         public string? ClientName { get; set; }
 
         [Required(ErrorMessage = "An e-mail address is required.")]
-        [DataType(DataType.Text)]
+        [DataType(DataType.EmailAddress)]
         [StringLength(50, ErrorMessage = "Character limit exceeded.")]
         public string? ClientEmail { get; set; }
 
@@ -27,14 +27,12 @@ namespace photo_booking_system.Dto
         [DataType(DataType.Date)]
         public DateTime EndDateTime { get; set; }
 
-        [Required]
         public int? Photo { get; set; }
 
         public int? Video { get; set; }
 
         public string? Comments { get; set; }
 
-        [Required]
         [DataType(DataType.Currency)]
         public double? Price { get; set; }
 

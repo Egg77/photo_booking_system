@@ -6,41 +6,29 @@ namespace photo_booking_system.Models
 
     public class Booking 
     {
-
-        #region Variables
-
-        //private const double BasePrice = 30.00;
-        //private const int PhotoRate = 2;
-        //private const int VideoRate = 50;
-
-        #endregion
-
-        #region Constructors
-
-        public Booking()
-        {
-        }
-
-        #endregion
-
-        #region Properties
-
         [Key]
         public int BookingId {get; set;}
 
-        [Required]
-        public string ClientName {get; set;}
+        [Required(ErrorMessage = "A client name is required.")]
+        [DataType(DataType.Text)]
+        [StringLength(50, ErrorMessage = "Character limit exceeded.")]
+        public string? ClientName {get; set;}
+
+        [Required(ErrorMessage = "An e-mail address is required.")]
+        [DataType(DataType.EmailAddress)]
+        [StringLength(50, ErrorMessage = "Character limit exceeded.")]
+        public string? ClientEmail {get; set;}
+
+        [Required(ErrorMessage = "A contact phone number is required.")]
+        [DataType(DataType.PhoneNumber)]
+        public string? ClientPhone {get; set;}
 
         [Required]
-        public string ClientEmail {get; set;}
-
-        [Required]
-        public string ClientPhone {get; set;}
-
-        [Required]
+        [DataType(DataType.Date)]
         public DateTime StartDateTime {get; set;}
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime EndDateTime {get; set;}
 
         public int? Photo {get; set;}
@@ -53,28 +41,5 @@ namespace photo_booking_system.Models
 
         public short Paid {get; set;}
 
-        #endregion
-
-        #region Methods
-        //Put this stuff elsewhere...
-        //public void CalculatePrice() 
-        //{
-
-        //    double? temp = BasePrice;
-
-        //    if(Photos!= null)
-        //    {
-        //        temp += Photos * (double) PhotoRate;
-        //    }
-
-        //    if(Video != null) 
-        //    {
-        //        temp += Video * (double) VideoRate;
-        //    }
-
-        //    Price = temp;
-        //}
-
-        #endregion
     }
 }

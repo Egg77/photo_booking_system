@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using photo_booking_system.Models;
 using photo_booking_system.Providers;
 using photo_booking_system.Dto;
-using photo_booking_system.ActionFilters;
 
 namespace photo_booking_system.Services
 {
@@ -29,19 +28,63 @@ namespace photo_booking_system.Services
             return await _SQLConnectionProvider.GetBookingList<Booking>();
         }
 
-        public async Task CreateBookingAsync(BookingCreationDto Booking)
+        public async Task<bool?> CreateBookingAsync(BookingCreationDto Booking)
         {
-            await _SQLConnectionProvider.CreateBooking(Booking);
+            CalculatePrice(Booking);
+            return await _SQLConnectionProvider.CreateBooking(Booking);
         }
 
-        public async Task UpdateBookingAsync(int BookingId, BookingUpdateDto Booking)
+        public async Task<bool?> UpdateBookingAsync(int BookingId, BookingUpdateDto Booking)
         {
-            await _SQLConnectionProvider.UpdateBooking(BookingId, Booking);
+            CalculatePrice(Booking);
+            return await _SQLConnectionProvider.UpdateBooking(BookingId, Booking);
         }
 
-        public async Task DeleteBookingAsync(int BookingId)
+        public async Task<bool?> DeleteBookingAsync(int BookingId)
         {
-            await _SQLConnectionProvider.DeleteBooking(BookingId);
+            return await _SQLConnectionProvider.DeleteBooking(BookingId);
+        }
+
+        public void CalculatePrice(BookingCreationDto Booking)
+        {
+            double? BasePrice = 30.00;
+            int PhotoRate = 2;
+            int VideoRate = 50;
+
+            double? temp = BasePrice;
+
+            if (Booking.Photo != null)
+            {
+                temp += Booking.Photo * PhotoRate;
+            }
+
+            if (Booking.Video != null)
+            {
+                temp += Booking.Video * (double)VideoRate;
+            }
+
+            Booking.Price = temp;
+        }
+
+        public void CalculatePrice(BookingUpdateDto Booking)
+        {
+            double? BasePrice = 30.00;
+            int PhotoRate = 2;
+            int VideoRate = 50;
+
+            double? temp = BasePrice;
+
+            if (Booking.Photo != null)
+            {
+                temp += Booking.Photo * PhotoRate;
+            }
+
+            if (Booking.Video != null)
+            {
+                temp += Booking.Video * (double)VideoRate;
+            }
+
+            Booking.Price = temp;
         }
     }
 }

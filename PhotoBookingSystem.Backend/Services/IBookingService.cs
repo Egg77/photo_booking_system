@@ -8,8 +8,8 @@ namespace photo_booking_system.Services
     {
         public Task<Booking> GetBookingAsync<T>(int BookingID);
         public Task<List<Booking>> GetBookingListAsync<T>();
-        public Task CreateBookingAsync(BookingCreationDto bookingCreationDto);
-        public Task UpdateBookingAsync(int BookingId, BookingUpdateDto bookingUpdateDto);
-        public Task DeleteBookingAsync(int BookingId);
+        public Task<bool?> CreateBookingAsync(BookingCreationDto bookingCreationDto);
+        public Task<bool?> UpdateBookingAsync(int BookingId, BookingUpdateDto bookingUpdateDto);
+        public Task<bool?> DeleteBookingAsync(int BookingId);
     }
 }
