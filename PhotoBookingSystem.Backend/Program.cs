@@ -1,13 +1,12 @@
 using photo_booking_system.Services;
 using photo_booking_system.Providers;
 using photo_booking_system.ActionFilters;
+using photo_booking_system.Migrations;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-//Check out validation filters - throw that in here
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -16,9 +15,12 @@ builder.Services.AddScoped<ValidationFilterAttribute>();
 builder.Services.Configure<ApiBehaviorOptions>(options
     => options.SuppressModelStateInvalidFilter = true);
 builder.Services.AddScoped<IBookingService, BookingService>();
-builder.Services.AddScoped<ISQLConnectionProvider, SQLConnectionProvider>();
+builder.Services.AddSingleton<ISQLConnectionProvider, SQLConnectionProvider>();
+builder.Services.AddSingleton<IDatabase, Database>();
 
 var app = builder.Build();
+
+app.MigrateDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

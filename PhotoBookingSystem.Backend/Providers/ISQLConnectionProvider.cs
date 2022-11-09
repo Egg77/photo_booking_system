@@ -18,5 +18,7 @@ namespace photo_booking_system.Providers
         public Task<bool?> UpdateBooking(int BookingId, BookingUpdateDto Booking);
 
         public Task<bool?> DeleteBooking(int BookingId);
+
+        public IDbConnection CreateMasterConnection();
     }
 }

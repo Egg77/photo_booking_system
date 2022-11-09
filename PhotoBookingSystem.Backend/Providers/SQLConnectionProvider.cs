@@ -5,6 +5,7 @@ using Dapper;
 
 using photo_booking_system.Models;
 using photo_booking_system.Dto;
+using Microsoft.Extensions.Configuration;
 
 namespace photo_booking_system.Providers
 {
@@ -12,10 +13,15 @@ namespace photo_booking_system.Providers
     {
         private readonly static string connectionString = "Data Source=localhost;TrustServerCertificate=True;Initial Catalog=PhotoBookingDB;User Id=sa; Password=someThingComplicated1234";
 
+        private readonly static string masterConnectionString = "Data Source = localhost;TrustServerCertificate=True;Initial Catalog=master;User Id=sa; Password=someThingComplicated1234";
+
+
+        #region Public Methods
+
+        public IDbConnection CreateMasterConnection() => new SqlConnection(masterConnectionString);
 
         public async Task<IDbConnection> GetConnectionAsync()
         {
-
             int connectionAttempts = 0;
             while (connectionAttempts < 2)
             {
@@ -163,5 +169,6 @@ namespace photo_booking_system.Providers
             }
 
         }
+        #endregion
     }
 }

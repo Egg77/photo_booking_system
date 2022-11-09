@@ -12,12 +12,12 @@ namespace photo_booking_system.Services
     {
         private readonly ISQLConnectionProvider _SQLConnectionProvider;
 
-
         public BookingService(ISQLConnectionProvider sQLConnectionProvider)
         {
             _SQLConnectionProvider = sQLConnectionProvider;
         }
 
+        #region Public Methods
         public async Task<Booking> GetBookingAsync<T>(int BookingId)
         {
             return await _SQLConnectionProvider.GetBooking<Booking>(BookingId);
@@ -44,9 +44,14 @@ namespace photo_booking_system.Services
         {
             return await _SQLConnectionProvider.DeleteBooking(BookingId);
         }
+        #endregion
 
-        public void CalculatePrice(BookingCreationDto Booking)
+        #region Private Methods
+        private void CalculatePrice(BookingCreationDto Booking)
         {
+            if (Booking == null)
+                return;
+
             double? BasePrice = 30.00;
             int PhotoRate = 2;
             int VideoRate = 50;
@@ -66,8 +71,11 @@ namespace photo_booking_system.Services
             Booking.Price = temp;
         }
 
-        public void CalculatePrice(BookingUpdateDto Booking)
+        private void CalculatePrice(BookingUpdateDto Booking)
         {
+            if (Booking == null)
+                return;
+
             double? BasePrice = 30.00;
             int PhotoRate = 2;
             int VideoRate = 50;
@@ -86,5 +94,6 @@ namespace photo_booking_system.Services
 
             Booking.Price = temp;
         }
+        #endregion
     }
 }

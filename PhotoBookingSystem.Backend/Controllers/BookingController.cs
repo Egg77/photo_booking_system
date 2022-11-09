@@ -59,15 +59,12 @@ namespace photo_booking_system.Controllers
         [HttpPut]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [Route("Create")]
-        public async Task<IActionResult> CreateBooking(BookingCreationDto Booking)
+        public async Task<IActionResult> CreateBooking([FromBody]BookingCreationDto Booking)
         {
             var result = await _BookingService.CreateBookingAsync(Booking);
 
             if (result == null)
                 return StatusCode(500);
-
-            else if (result == false)
-                return BadRequest();
 
             else
                 return new OkResult();
@@ -77,12 +74,9 @@ namespace photo_booking_system.Controllers
         [HttpPatch]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [Route("Update/{BookingId}")]
-        public async Task<IActionResult> UpdateBooking(int BookingId, BookingUpdateDto Booking)
+        public async Task<IActionResult> UpdateBooking(int BookingId, [FromBody]BookingUpdateDto Booking)
         {
             if (BookingId <= 0) return BadRequest("Invalid Booking ID");
-
-            var dbBooking = GetBooking(BookingId);
-            if (dbBooking == null) return NotFound();
 
             var result = await _BookingService.UpdateBookingAsync(BookingId, Booking);
 
@@ -90,7 +84,7 @@ namespace photo_booking_system.Controllers
                 return StatusCode(500);
 
             else if (result == false)
-                return BadRequest();
+                return NotFound();
 
             else
                 return new OkResult();            
@@ -102,16 +96,13 @@ namespace photo_booking_system.Controllers
         {
             if (BookingId <= 0) return BadRequest("Invalid Booking ID");
 
-            var dbBooking = await _BookingService.GetBookingAsync<Booking>(BookingId);
-            if (dbBooking == null) return NotFound();
-
             var result = await _BookingService.DeleteBookingAsync(BookingId);
 
             if (result == null)
                 return StatusCode(500);
 
             else if (result == false)
-                return BadRequest();
+                return NotFound();
 
             else
                 return new OkResult();
