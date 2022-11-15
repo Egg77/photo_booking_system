@@ -47,7 +47,7 @@ namespace photo_booking_system.Services
         #endregion
 
         #region Private Methods
-        private void CalculatePrice(BookingCreationDto Booking)
+        public void CalculatePrice(BookingCreationDto Booking)
         {
             if (Booking == null)
                 return;
@@ -71,7 +71,7 @@ namespace photo_booking_system.Services
             Booking.Price = temp;
         }
 
-        private void CalculatePrice(BookingUpdateDto Booking)
+        public void CalculatePrice(BookingUpdateDto Booking)
         {
             if (Booking == null)
                 return;

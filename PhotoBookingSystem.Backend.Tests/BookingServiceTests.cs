@@ -1,6 +1,5 @@
 ﻿using System;
 using Moq;
-using Xunit;
 using Microsoft.AspNetCore.Mvc;
 
 using photo_booking_system.Controllers;
@@ -17,8 +16,8 @@ namespace photo_booking_system.Backend.Tests
     
         private Mock<ISQLConnectionProvider> _mockSqlConnectionProvider;
 
-        private BookingCreationDto testCreationDto = new BookingCreationDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, EndDateTime = System.DateTime.Now, Comments = "blah", Photo = 30, Video = 0, Price = 100, Paid = 0 };
-        private BookingUpdateDto testUpdateDto = new BookingUpdateDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, EndDateTime = System.DateTime.Now, Comments = "blah", Photo = 30, Video = 0, Price = 100, Paid = 0 };
+        private BookingCreationDto testCreationDto = new BookingCreationDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, EndDateTime = System.DateTime.Now, Comments = "blah", Photo = 30, Video = 2, Price = 100, Paid = 0 };
+        private BookingUpdateDto testUpdateDto = new BookingUpdateDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, EndDateTime = System.DateTime.Now, Comments = "blah", Photo = 30, Video = 2, Price = 100, Paid = 0 };
         Booking mockBooking = new Booking();
         List<Booking> mockBookingList = new List<Booking>();
         private int validId = 1;
@@ -127,6 +126,36 @@ namespace photo_booking_system.Backend.Tests
 
             Assert.NotNull(response);
             Assert.False(response);
+        }
+
+        //Calculate Price
+
+        [Fact]
+        public void CalculatePrice_ReturnsCorrectPrice_Creation()
+        {
+            int correctPrice = 190;
+
+            _mockBookingService.CalculatePrice(testCreationDto);
+
+            var result = testCreationDto;
+
+            Assert.Equal(correctPrice, result.Price);
+
+        }
+
+
+        //Update Price
+
+        [Fact]
+        public void CalculatePrice_ReturnsCorrectPrice_Update()
+        {
+            int correctPrice = 190;
+
+            _mockBookingService.CalculatePrice(testUpdateDto);
+
+            var result = testUpdateDto;
+
+            Assert.Equal(correctPrice, result.Price);
         }
 
     }

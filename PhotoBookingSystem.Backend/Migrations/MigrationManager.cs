@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.Hosting;
+using PhotoBookingSystem.Backend.Migrations;
 
 namespace photo_booking_system.Migrations
 {
@@ -11,14 +12,15 @@ namespace photo_booking_system.Migrations
             using (var scope = host.Services.CreateScope())
             {
                 var databaseService = scope.ServiceProvider.GetRequiredService<IDatabase>();
-                //var migrationService = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+                var migrationService = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
 
                 try
                 {
                     databaseService.CreateDatabase("PhotoBookingDB");
 
-                    //migrationService.ListMigrations();
-                    //migrationService.MigrateDown(202106280001);
+                    migrationService.ListMigrations();
+                    migrationService.MigrateUp(2022110901); //Create Table
+                    migrationService.MigrateUp(2022110902); //Populate table with initial seed data
                 }
                 catch
                 {
