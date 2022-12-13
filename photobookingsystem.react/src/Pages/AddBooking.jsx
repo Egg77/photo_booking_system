@@ -7,3 +7,9 @@ function AddBooking(){
 }
 
 export default AddBooking;
+
+//Hand notes:
+
+// HTML5 form validation
+// Strongly typed inputs
+// Look into growls!

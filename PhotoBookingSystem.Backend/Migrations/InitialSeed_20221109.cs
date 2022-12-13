@@ -18,8 +18,8 @@ namespace PhotoBookingSystem.Backend.Migrations
 			Insert.IntoTable("Bookings")
 				.Row(new BookingCreationDto
 				{
-					ClientName = "Peter",
-					ClientEmail = "peter@company.com",
+					ClientName = "Vincent",
+					ClientEmail = "vincent@company.com",
 					ClientPhone = "123-456-7890",
 					StartDateTime = System.DateTime.Now,
 					EndDateTime = System.DateTime.Now.AddHours(1),
@@ -55,9 +55,99 @@ namespace PhotoBookingSystem.Backend.Migrations
                     EndDateTime = System.DateTime.Now.AddHours(1),
                     Photo = 30,
                     Video = 0,
-                    Comments = "Plz",
+                    Comments = "",
                     Price = 110,
                     Paid = 0
+                });
+
+            Insert.IntoTable("Bookings")
+                .Row(new BookingCreationDto
+                {
+                    ClientName = "Karen",
+                    ClientEmail = "karen@company.com",
+                    ClientPhone = "123-456-7890",
+                    StartDateTime = System.DateTime.Now,
+                    EndDateTime = System.DateTime.Now.AddHours(1),
+                    Photo = 30,
+                    Video = 0,
+                    Comments = ":)",
+                    Price = 110,
+                    Paid = 0
+                });
+
+            Insert.IntoTable("Bookings")
+                .Row(new BookingCreationDto
+                {
+                    ClientName = "Godwin",
+                    ClientEmail = "godwin@company.com",
+                    ClientPhone = "123-456-7890",
+                    StartDateTime = System.DateTime.Now,
+                    EndDateTime = System.DateTime.Now.AddHours(1),
+                    Photo = 30,
+                    Video = 0,
+                    Comments = "Plz Patrick",
+                    Price = 110,
+                    Paid = 0
+                });
+
+            Insert.IntoTable("Bookings")
+                .Row(new BookingCreationDto
+                {
+                    ClientName = "Morris",
+                    ClientEmail = "morris@company.com",
+                    ClientPhone = "123-456-7890",
+                    StartDateTime = System.DateTime.Now,
+                    EndDateTime = System.DateTime.Now.AddHours(1),
+                    Photo = 30,
+                    Video = 0,
+                    Comments = ">|",
+                    Price = 110,
+                    Paid = 0
+                });
+
+            Insert.IntoTable("Bookings")
+                .Row(new BookingCreationDto
+                {
+                    ClientName = "Naseem",
+                    ClientEmail = "naseem@company.com",
+                    ClientPhone = "123-456-7890",
+                    StartDateTime = System.DateTime.Now,
+                    EndDateTime = System.DateTime.Now.AddHours(1),
+                    Photo = 30,
+                    Video = 0,
+                    Comments = "Wide as possible",
+                    Price = 110,
+                    Paid = 0
+                });
+
+            Insert.IntoTable("Bookings")
+                .Row(new BookingCreationDto
+                {
+                    ClientName = "Rachel",
+                    ClientEmail = "rachel@company.com",
+                    ClientPhone = "123-456-7890",
+                    StartDateTime = System.DateTime.Now,
+                    EndDateTime = System.DateTime.Now.AddHours(1),
+                    Photo = 30,
+                    Video = 0,
+                    Comments = "",
+                    Price = 110,
+                    Paid = 1
+                });
+
+            Insert.IntoTable("Bookings")
+                .Row(new BookingCreationDto
+                {
+                    ClientName = "Judit",
+                    ClientEmail = "judit@company.com",
+                    ClientPhone = "123-456-7890",
+                    StartDateTime = System.DateTime.Now,
+                    EndDateTime = System.DateTime.Now.AddHours(1),
+                    Photo = 40,
+                    Video = 0,
+                    Comments = "Many photos please",
+                    Price = 150,
+                    Paid = 1
                 });
         }
 	}
