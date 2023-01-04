@@ -9,7 +9,7 @@ CREATE TABLE dbo.Bookings
  ClientEmail nvarchar(50) NOT NULL,
  ClientPhone nvarchar(20) NOT NULL,
  StartDateTime datetime NOT NULL,
- EndDateTime datetime NOT NULL,
+ EndDateTime datetime,
  Photo int,
  Video int,
  Comments nvarchar(500),

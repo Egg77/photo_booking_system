@@ -26,8 +26,8 @@ namespace photo_booking_system.Dto
         public DateTime StartDateTime { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateTime EndDateTime { get; set; }
+        [DataType(DataType.Text)]
+        public string? Address { get; set; }
 
         [Range(0, 200, ErrorMessage = "Please choose between 0 and 200 photos.")]
         public int? Photo { get; set; }

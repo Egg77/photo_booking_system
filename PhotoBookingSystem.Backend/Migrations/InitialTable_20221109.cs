@@ -20,7 +20,7 @@ namespace photo_booking_system.Migrations
                 .WithColumn("ClientEmail").AsString(50).NotNullable()
                 .WithColumn("ClientPhone").AsString(20).NotNullable()
                 .WithColumn("StartDateTime").AsDateTime().NotNullable()
-                .WithColumn("EndDateTime").AsDateTime().NotNullable()
+                .WithColumn("Address").AsString(100).NotNullable()
                 .WithColumn("Photo").AsInt32()
                 .WithColumn("Video").AsInt32()
                 .WithColumn("Comments").AsString(500)

@@ -4,16 +4,17 @@ const getBookingList = () => {
   return http.get("/BookingList");
 };
 
-const getBooking = (id) => {
+export const getBooking = (id) => {
   return http.get(`/${id}`);
 };
 
 const createBooking = (data) => {
-  return http.post("/Create", data);
+  console.log("made it here?????")
+  return http.put("/Create", data);
 };
 
 const updateBooking = (id, data) => {
-  return http.post(`/Update/${id}`, data);
+  return http.patch(`/Update/${id}`, data);
 };
 
 const deleteBooking = (id) => {

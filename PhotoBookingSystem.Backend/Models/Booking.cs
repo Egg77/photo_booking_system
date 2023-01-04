@@ -28,8 +28,8 @@ namespace photo_booking_system.Models
         public DateTime StartDateTime {get; set;}
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateTime EndDateTime {get; set;}
+        [DataType(DataType.Text)]
+        public string? Address { get; set; }
 
         public int? Photo {get; set;}
 

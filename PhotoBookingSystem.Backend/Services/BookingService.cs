@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
-
 using photo_booking_system.Models;
 using photo_booking_system.Providers;
 using photo_booking_system.Dto;
@@ -30,13 +29,13 @@ namespace photo_booking_system.Services
 
         public async Task<bool?> CreateBookingAsync(BookingCreationDto Booking)
         {
-            CalculatePrice(Booking);
+            //CalculatePrice(Booking);
             return await _SQLConnectionProvider.CreateBooking(Booking);
         }
 
         public async Task<bool?> UpdateBookingAsync(int BookingId, BookingUpdateDto Booking)
         {
-            CalculatePrice(Booking);
+            //CalculatePrice(Booking);
             return await _SQLConnectionProvider.UpdateBooking(BookingId, Booking);
         }
 

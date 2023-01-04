@@ -16,8 +16,8 @@ namespace photo_booking_system.Backend.Tests
     
         private Mock<ISQLConnectionProvider> _mockSqlConnectionProvider;
 
-        private BookingCreationDto testCreationDto = new BookingCreationDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, EndDateTime = System.DateTime.Now, Comments = "blah", Photo = 30, Video = 2, Price = 100, Paid = 0 };
-        private BookingUpdateDto testUpdateDto = new BookingUpdateDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, EndDateTime = System.DateTime.Now, Comments = "blah", Photo = 30, Video = 2, Price = 100, Paid = 0 };
+        private BookingCreationDto testCreationDto = new BookingCreationDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, Address = "123 Fake Street", Comments = "blah", Photo = 30, Video = 2, Price = 100, Paid = 0 };
+        private BookingUpdateDto testUpdateDto = new BookingUpdateDto() { ClientName = "test1", ClientEmail = "test@test.test", ClientPhone = "123-456-7890", StartDateTime = System.DateTime.Now, Address = "123 Fake Street", Comments = "blah", Photo = 30, Video = 2, Price = 100, Paid = 0 };
         Booking mockBooking = new Booking();
         List<Booking> mockBookingList = new List<Booking>();
         private int validId = 1;

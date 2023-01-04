@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import Layout from "./Pages/Layout";
-import Home from "./Pages/Home";
 import ListBookings from "./Pages/ListBookings";
 import AddBooking from "./Pages/AddBooking";
 import UpdateBooking from "./Pages/UpdateBooking";
@@ -17,10 +16,9 @@ export default function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="bookinglist" element={<ListBookings />} />
+        <Route index element={<ListBookings />} />
         <Route path="newbooking" element={<AddBooking />} />
-        <Route path="updatebooking" element={<UpdateBooking />} />
+        <Route path="updatebooking/" element={<UpdateBooking authed={true} />}/>
       </Route>
     </Routes>
   </BrowserRouter>

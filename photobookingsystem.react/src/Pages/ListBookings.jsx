@@ -1,11 +1,12 @@
-import React, { useState, useEffect, View } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getBookingList} from '../Actions/bookings';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Link} from 'react-router-dom'
 
 
 const ListBookings = () => {
@@ -19,10 +20,10 @@ const ListBookings = () => {
         dispatch(getBookingList());
         },[]);
         
-    const refreshData = () => {
-        setCurrentBooking(null);
-        setCurrentIndex(-1);
-    };
+    // const refreshData = () => {
+    //     setCurrentBooking(null);
+    //     setCurrentIndex(-1);
+    // };
 
     const setActiveBooking = (index, booking) => {
 
@@ -49,7 +50,7 @@ const ListBookings = () => {
                                 <Row>
                                     <Col sm={2}>{booking.clientName}</Col>
                                     <Col sm={5}>{booking.startDateTime}</Col>
-                                    <Col sm>123 Fake Street N</Col>
+                                    <Col sm>{booking.address}</Col>
                                 </Row>
                             </Container>
                         </li>
@@ -76,7 +77,7 @@ const ListBookings = () => {
                                 <label>
                                     <strong>Address </strong>
                                 </label>{" "}
-                                <p>123 Fake Street N</p>
+                                <p>{currentBooking.address}</p>
                             </Row>
                             <Row>
                                 <label>
@@ -112,7 +113,14 @@ const ListBookings = () => {
                                 <label>
                                     <strong>Quoted Price </strong>
                                 </label>{" "}
-                                <p>{currentBooking.price}</p>
+                                <p>${currentBooking.price}</p>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Link to='/updatebooking' state={{currentBooking}}>
+                                        Modify
+                                    </Link>
+                                </Col>
                             </Row>
                         </Container>
                     ) : (
