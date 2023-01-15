@@ -116,11 +116,11 @@ export const updateBooking =
 
 export const deleteBooking = (id) => async (dispatch) => {
   try {
-    const result = await BookingService.deleteBooking(id);
+    await BookingService.deleteBooking(id);
 
     dispatch({
       type: DELETE_BOOKING,
-      payload: result.data,
+      payload: {id},
     });
   } catch (error) {
     console.log(error);

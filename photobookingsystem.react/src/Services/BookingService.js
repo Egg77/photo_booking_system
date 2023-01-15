@@ -4,12 +4,11 @@ const getBookingList = () => {
   return http.get("/BookingList");
 };
 
-export const getBooking = (id) => {
+const getBooking = (id) => {
   return http.get(`/${id}`);
 };
 
 const createBooking = (data) => {
-  console.log("made it here?????")
   return http.put("/Create", data);
 };
 

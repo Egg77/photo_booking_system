@@ -193,9 +193,3 @@ function AddBooking(){
 };
 
 export default AddBooking;
-
-//Handy notes:
-
-// HTML5 form validation
-// Strongly typed inputs
-// Look into growls!

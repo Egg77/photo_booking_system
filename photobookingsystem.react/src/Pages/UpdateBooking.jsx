@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {useDispatch} from 'react-redux';
-import {updateBooking} from '../Actions/bookings';
-import {getBooking} from '../Services/BookingService';
+import {updateBooking, deleteBooking} from '../Actions/bookings';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import {useLocation} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
+
+//What's broken: 
+//- Date field format isn't consistent and isn't populating (might be easiest to change this on back-end and db)
+//- Delete confirm infinite loops
 
 const UpdateBooking = () => {
 
@@ -16,10 +17,12 @@ const UpdateBooking = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const Location = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     
-    const [booking, setBooking] = useState(Location.state.currentBooking);
-    const [submitted, setSubmitted] = useState(false);
+    const [booking, setBooking] = useState(location.state.currentBooking);
+    console.log(booking);
     const [validated, setValidated] = useState(false);
 
     const dispatch = useDispatch();
@@ -29,7 +32,7 @@ const UpdateBooking = () => {
         setBooking({ ...booking, [name]: value });
       };
 
-      const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -64,18 +67,19 @@ const UpdateBooking = () => {
             price : data.price,
             paid : data.paid
         });
-        setSubmitted(true);
         console.log(data);
+        navigate("/");
         })
         .catch(e => {
             console.log(e);
         });
     }
 
-    const deleteBooking = () => {
-        console.log(booking.bookingId)
+    const deleteBookingConfirm = () => {
         dispatch(deleteBooking(booking.bookingId))
-        .then()
+        .then(() => {
+            navigate("/");
+        })
         .catch(e => {
             console.log(e);
             });
@@ -173,7 +177,7 @@ const UpdateBooking = () => {
                         value={booking.price}
                         onChange={handleInputChange}/>
                 </Form.Group>
-                <Button type='submit'>Submit</Button>
+                <Button type='button' onClick={handleSubmit}>Submit</Button>
                 <Button variant="danger" onClick={handleShow}>
                 Delete
             </Button>
@@ -186,7 +190,7 @@ const UpdateBooking = () => {
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete this booking?</Modal.Body>
         <Modal.Footer>
-            <Button variant="danger" onClick={deleteBooking}>OK</Button> {}
+            <Button variant="danger" onClick={deleteBookingConfirm}>OK</Button> {}
             <Button variant="secondary" onClick={handleClose}>Cancel</Button>
         </Modal.Footer>
         </Modal>
