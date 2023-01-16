@@ -7,9 +7,6 @@ import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import {useNavigate, useLocation} from 'react-router-dom';
 
-//What's broken: 
-//- Date field format isn't consistent and isn't populating (might be easiest to change this on back-end and db)
-//- Delete confirm infinite loops
 
 const UpdateBooking = () => {
 
@@ -22,13 +19,13 @@ const UpdateBooking = () => {
 
     
     const [booking, setBooking] = useState(location.state.currentBooking);
-    console.log(booking);
     const [validated, setValidated] = useState(false);
 
     const dispatch = useDispatch();
 
     const handleInputChange = event => {
         const { name, value } = event.target;
+        console.log(event.target);
         setBooking({ ...booking, [name]: value });
       };
 
@@ -123,7 +120,7 @@ const UpdateBooking = () => {
                     <Form.Label>Booking Date</Form.Label>
                     <Form.Control 
                         required
-                        type='date' 
+                        type='datetime-local' 
                         name='startDateTime'
                         value={booking.startDateTime}
                         onChange={handleInputChange}/>

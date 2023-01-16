@@ -66,6 +66,7 @@ namespace photo_booking_system.Providers
 
                 var connection = await GetConnectionAsync();
                 var result = await connection.QueryAsync<T>(query).ConfigureAwait(false);
+                Console.WriteLine(result.ToString());
                 return result.ToList();
             }
             catch (Exception ex)
@@ -87,7 +88,7 @@ namespace photo_booking_system.Providers
                 parameters.Add("ClientName", Booking.ClientName, DbType.String);
                 parameters.Add("ClientEmail", Booking.ClientEmail, DbType.String);
                 parameters.Add("ClientPhone", Booking.ClientPhone, DbType.String);
-                parameters.Add("StartDateTime", Booking.StartDateTime, DbType.DateTime);
+                parameters.Add("StartDateTime", Booking.StartDateTime, DbType.Date);
                 parameters.Add("Address", Booking.Address, DbType.String);
                 parameters.Add("Photo", Booking.Photo, DbType.Int16);
                 parameters.Add("Video", Booking.Video, DbType.Int16);
@@ -123,7 +124,7 @@ namespace photo_booking_system.Providers
                 parameters.Add("ClientName", Booking.ClientName, DbType.String);
                 parameters.Add("ClientEmail", Booking.ClientEmail, DbType.String);
                 parameters.Add("ClientPhone", Booking.ClientPhone, DbType.String);
-                parameters.Add("StartDateTime", Booking.StartDateTime, DbType.DateTime);
+                parameters.Add("StartDateTime", Booking.StartDateTime, DbType.Date);
                 parameters.Add("Address", Booking.Address, DbType.String);
                 parameters.Add("Photo", Booking.Photo, DbType.Int16);
                 parameters.Add("Video", Booking.Video, DbType.Int16);

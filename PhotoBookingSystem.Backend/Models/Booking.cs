@@ -24,7 +24,7 @@ namespace photo_booking_system.Models
         public string? ClientPhone {get; set;}
 
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime StartDateTime {get; set;}
 
         [Required]

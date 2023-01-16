@@ -124,7 +124,7 @@ function AddBooking(){
                     <Form.Label>Booking Date</Form.Label>
                     <Form.Control 
                         required
-                        type='date' 
+                        type='datetime-local' 
                         name='startDateTime'
                         value={booking.startDateTime}
                         onChange={handleInputChange}/>
