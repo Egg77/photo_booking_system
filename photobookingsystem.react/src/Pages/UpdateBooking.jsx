@@ -83,7 +83,7 @@ const UpdateBooking = () => {
         };
 
     return (
-        <>
+        <div style={{padding: "1em 2em"}}>
         <h1>Update Booking</h1>
         <Container>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -93,6 +93,7 @@ const UpdateBooking = () => {
                         required
                         name='clientName'
                         value={booking.clientName}
+                        maxlength="50"
                         onChange={handleInputChange}
                         />
                 <Form.Control.Feedback type="invalid">Please enter a name</Form.Control.Feedback>
@@ -106,15 +107,17 @@ const UpdateBooking = () => {
                         placeholder='Enter email'
                         value={booking.clientEmail}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter a valid e-mail address.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Phone Number</Form.Label>
                     <Form.Control 
-                        required
-                        type='tel' 
-                        name='clientPhone'
-                        value={booking.clientPhone}
-                        onChange={handleInputChange}/>
+                       required
+                       type='tel' 
+                       name='clientPhone'
+                       value={booking.clientPhone}
+                       onChange={handleInputChange}/>
+                   <Form.Control.Feedback type="invalid">Please enter a phone number.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Booking Date</Form.Label>
@@ -124,6 +127,7 @@ const UpdateBooking = () => {
                         name='startDateTime'
                         value={booking.startDateTime}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter a date.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Address</Form.Label>
@@ -131,8 +135,10 @@ const UpdateBooking = () => {
                         required
                         type='text' 
                         name='address'
+                        maxLength='100'
                         value={booking.address}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter an address.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Number of Photos</Form.Label>
@@ -144,40 +150,46 @@ const UpdateBooking = () => {
                         max='200'
                         value={booking.photo}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter a value between 0 and 200.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Minutes of Video</Form.Label>
                     <Form.Control
-                        required 
+                        required
                         type='number' 
                         name='video'
                         min='0'
                         max='10'
                         value={booking.video}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter a value between 0 and 10.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Comments</Form.Label>
                     <Form.Control 
-                        required
                         type='text' 
                         name='comments'
                         maxLength='500'
                         value={booking.comments}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter less than 500 characters.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Price</Form.Label>
                     <Form.Control 
+                        required
                         type='currency' 
                         name='price'
                         value={booking.price}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter a price.</Form.Control.Feedback>
                 </Form.Group>
-                <Button type='button' onClick={handleSubmit}>Submit</Button>
-                <Button variant="danger" onClick={handleShow}>
+                <div style={{padding: "1em 0em"}}>
+                <Button type='button' class="btn btn-primary" onClick={handleSubmit}>Submit</Button>
+                <Button variant="danger" class="btn btn-danger" onClick={handleShow}>
                 Delete
             </Button>
+            </div>
             </Form>
             </Container>
 
@@ -191,7 +203,7 @@ const UpdateBooking = () => {
             <Button variant="secondary" onClick={handleClose}>Cancel</Button>
         </Modal.Footer>
         </Modal>
-        </>
+        </div>
     );
 }
 

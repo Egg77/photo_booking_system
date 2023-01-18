@@ -81,7 +81,7 @@ function AddBooking(){
     };
 
     return (
-        <>
+        <div style={{padding: "1em 2em"}}>
         <h1>New Booking</h1>
         { submitted ? (
             <Container>
@@ -96,8 +96,9 @@ function AddBooking(){
                         required
                         name='clientName'
                         value={booking.clientName}
+                        maxlength="50"
                         onChange={handleInputChange}/>
-                    <Form.Control.Feedback type="invalid">Please enter a name.</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">Please enter a valid name (maximum 50 characters).</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
@@ -136,6 +137,7 @@ function AddBooking(){
                         required
                         type='text' 
                         name='address'
+                        maxLength='100'
                         value={booking.address}
                         onChange={handleInputChange}/>
                     <Form.Control.Feedback type="invalid">Please enter an address.</Form.Control.Feedback>
@@ -172,6 +174,7 @@ function AddBooking(){
                         maxLength='500'
                         value={booking.comments}
                         onChange={handleInputChange}/>
+                    <Form.Control.Feedback type="invalid">Please enter less than 500 characters.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Price</Form.Label>
@@ -183,11 +186,13 @@ function AddBooking(){
                         onChange={handleInputChange}/>
                     <Form.Control.Feedback type="invalid">Please enter a price.</Form.Control.Feedback>
                 </Form.Group>
+                <div style={{padding: "1em 0em"}}>
                 <Button type='button' onClick={handleSubmit}>Submit</Button>
+                </div>
             </Form>
             </Container>
         )}
-        </>
+        </div>
 
     );
 };

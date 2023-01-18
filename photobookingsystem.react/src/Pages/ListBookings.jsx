@@ -5,7 +5,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import '../index.css';
 
 
 const ListBookings = () => {
@@ -30,8 +31,20 @@ const ListBookings = () => {
         setCurrentIndex(index);
     };
 
+    const formatDateTime = (dateTime) => {
+        
+        //2023-01-16T00:00:00
+        let year = dateTime.substring(0,4);
+        let month = dateTime.substring(5,7);
+        let day = dateTime.substring(8,10);
+        let hours = dateTime.substring(11,13);
+        let mins = dateTime.substring(14,16);
+
+        return (year + '-' + month + '-' + day + ', ' + hours + ":" + mins );
+    };
+
     return (
-        <>
+        <div style={{padding: "1em 2em"}}>
             <h1>Booking List</h1>
             <Row>
                 <Col sm={5}>
@@ -47,9 +60,9 @@ const ListBookings = () => {
                         >
                             <Container>
                                 <Row>
-                                    <Col sm={2}>{booking.clientName}</Col>
-                                    <Col sm={5}>{booking.startDateTime}</Col>
-                                    <Col sm>{booking.address}</Col>
+                                    <Col sm={4}>{booking.clientName}</Col>
+                                    <Col sm={5}>{formatDateTime(booking.startDateTime)}</Col>
+                                    <Col sm={3}>{booking.address}</Col>
                                 </Row>
                             </Container>
                         </li>
@@ -70,7 +83,7 @@ const ListBookings = () => {
                                 <label>
                                     <strong>Date & Time </strong>
                                 </label>{" "}
-                                <p>{currentBooking.startDateTime}</p>
+                                <p>{formatDateTime(currentBooking.startDateTime)}</p>
                             </Row>
                             <Row>
                                 <label>
@@ -130,7 +143,7 @@ const ListBookings = () => {
                     )}
                 </Col>
             </Row>
-        </>
+        </div>
     );
 };
     

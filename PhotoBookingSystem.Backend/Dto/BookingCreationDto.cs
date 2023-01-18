@@ -35,6 +35,7 @@ namespace photo_booking_system.Dto
         [Range(0,10, ErrorMessage = "Please choose between 0 and 10 minutes of video.")]
         public int? Video { get; set; }
 
+        [StringLength(500, ErrorMessage = "Character limit exceeded.")]
         public string? Comments { get; set; }
 
         [Required]
