@@ -16,7 +16,7 @@ namespace photo_booking_system.Migrations
 
                 try
                 {
-                    databaseService.CreateDatabase("PhotoBookingDB");
+                    //databaseService.CreateDatabase("PhotoBookingDB");
 
                     migrationService.ListMigrations();
                     migrationService.MigrateUp(2022110901); //Create Table

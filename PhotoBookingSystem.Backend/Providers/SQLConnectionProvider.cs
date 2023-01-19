@@ -11,9 +11,9 @@ namespace photo_booking_system.Providers
 {
     public class SQLConnectionProvider : ISQLConnectionProvider
     {
-        private readonly static string connectionString = "Data Source=localhost;TrustServerCertificate=True;Initial Catalog=PhotoBookingDB;User Id=sa; Password=someThingComplicated1234";
+        private readonly static string connectionString = "Server=tcp:photo-booking-server.database.windows.net,1433;Initial Catalog=PhotoBookingDB;Persist Security Info=False;User ID=photo-booking-admin;Password=47ZDUhPGrhLTCHgadZfZ;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-        private readonly static string masterConnectionString = "Data Source = localhost;TrustServerCertificate=True;Initial Catalog=master;User Id=sa; Password=someThingComplicated1234";
+        private readonly static string masterConnectionString = "Server=tcp:photo-booking-server.database.windows.net,1433;Initial Catalog=master;Persist Security Info=False;User ID=photo-booking-admin;Password=47ZDUhPGrhLTCHgadZfZ;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 
         #region Public Methods

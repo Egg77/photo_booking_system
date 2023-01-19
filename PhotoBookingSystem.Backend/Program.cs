@@ -33,7 +33,7 @@ builder.Services.AddSingleton<IDatabase, Database>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
         .AddFluentMigratorCore()
         .ConfigureRunner(c => c.AddSqlServer2012()
-        .WithGlobalConnectionString("Data Source=localhost;TrustServerCertificate=True;Initial Catalog=PhotoBookingDB;User Id=sa; Password=someThingComplicated1234")
+        .WithGlobalConnectionString("Server=tcp:photo-booking-server.database.windows.net,1433;Initial Catalog=PhotoBookingDB;Persist Security Info=False;User ID=photo-booking-admin;Password=47ZDUhPGrhLTCHgadZfZ;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
             .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
 
 var app = builder.Build();

@@ -89,9 +89,8 @@ export const updateBooking =
   ) =>
   async (dispatch) => {
     try {
-      const result = await BookingService.updateBooking(
-        bookingId,
-        {clientName,
+      const result = await BookingService.updateBooking(bookingId, {
+        clientName,
         clientEmail,
         clientPhone,
         address,
@@ -100,8 +99,8 @@ export const updateBooking =
         video,
         comments,
         price,
-        paid}
-      );
+        paid,
+      });
 
       dispatch({
         type: UPDATE_BOOKING,
@@ -120,7 +119,7 @@ export const deleteBooking = (id) => async (dispatch) => {
 
     dispatch({
       type: DELETE_BOOKING,
-      payload: {id},
+      payload: { id },
     });
   } catch (error) {
     console.log(error);
